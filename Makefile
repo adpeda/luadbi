@@ -6,7 +6,7 @@ MKDIR		?= mkdir -p
 INSTALL		?= install
 INSTALL_PROGRAM	?= $(INSTALL)
 INSTALL_DATA	?= $(INSTALL) -m 644
-LUA_V		?= 5.1
+LUA_V		?= 5.4
 LUA_LDIR	?= /usr/share/lua/$(LUA_V)
 LUA_CDIR	?= /usr/lib/lua/$(LUA_V)
 
@@ -48,7 +48,7 @@ PSQL_OBJS	 = $(OBJS) build/dbd_postgresql_main.o build/dbd_postgresql_connection
 SQLITE3_OBJS	 = $(OBJS) build/dbd_sqlite3_main.o build/dbd_sqlite3_connection.o build/dbd_sqlite3_statement.o
 DB2_OBJS	 = $(OBJS) build/dbd_db2_main.o build/dbd_db2_connection.o build/dbd_db2_statement.o
 ORACLE_OBJS	 = $(OBJS) build/dbd_oracle_main.o build/dbd_oracle_connection.o build/dbd_oracle_statement.o
- 
+
 free: mysql psql sqlite3
 
 all:  mysql psql sqlite3 db2 oracle
@@ -88,21 +88,21 @@ build/dbd_postgresql_main.o: dbd/postgresql/main.c dbd/postgresql/dbd_postgresql
 build/dbd_postgresql_statement.o: dbd/postgresql/statement.c dbd/postgresql/dbd_postgresql.h dbd/common.h
 	$(CC) -c -o $@ $< $(PSQL_FLAGS)
 
-build/dbd_sqlite3_connection.o: dbd/sqlite3/connection.c dbd/sqlite3/dbd_sqlite3.h dbd/common.h 
+build/dbd_sqlite3_connection.o: dbd/sqlite3/connection.c dbd/sqlite3/dbd_sqlite3.h dbd/common.h
 	$(CC) -c -o $@ $< $(SQLITE3_FLAGS)
 build/dbd_sqlite3_main.o: dbd/sqlite3/main.c dbd/sqlite3/dbd_sqlite3.h dbd/common.h
 	$(CC) -c -o $@ $< $(SQLITE3_FLAGS)
 build/dbd_sqlite3_statement.o: dbd/sqlite3/statement.c dbd/sqlite3/dbd_sqlite3.h dbd/common.h
 	$(CC) -c -o $@ $< $(SQLITE3_FLAGS)
 
-build/dbd_db2_connection.o: dbd/db2/connection.c dbd/db2/dbd_db2.h dbd/common.h 
+build/dbd_db2_connection.o: dbd/db2/connection.c dbd/db2/dbd_db2.h dbd/common.h
 	$(CC) -c -o $@ $< $(DB2_FLAGS)
 build/dbd_db2_main.o: dbd/db2/main.c dbd/db2/dbd_db2.h dbd/common.h
 	$(CC) -c -o $@ $< $(DB2_FLAGS)
 build/dbd_db2_statement.o: dbd/db2/statement.c dbd/db2/dbd_db2.h dbd/common.h
 	$(CC) -c -o $@ $< $(DB2_FLAGS)
 
-build/dbd_oracle_connection.o: dbd/oracle/connection.c dbd/oracle/dbd_oracle.h dbd/common.h 
+build/dbd_oracle_connection.o: dbd/oracle/connection.c dbd/oracle/dbd_oracle.h dbd/common.h
 	$(CC) -c -o $@ $< $(ORACLE_FLAGS)
 build/dbd_oracle_main.o: dbd/oracle/main.c dbd/oracle/dbd_oracle.h dbd/common.h
 	$(CC) -c -o $@ $< $(ORACLE_FLAGS)
